@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="Control.cs" />
     <Compile Include="Logica.cs" />
+    <Compile Include="GRU\prediccion\GRU.cs" />
+    <Compile Include="GRU\prediccion\RN.cs" />
+    <Compile Include="GRU\prediccion\RNN.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
