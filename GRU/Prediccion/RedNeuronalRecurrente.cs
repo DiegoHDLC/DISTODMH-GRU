@@ -1,4 +1,4 @@
-using GRU.prediccion;
+//using GRU.prediccion;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GRU{
     
-    public class GRU{
+    public class RedNeuronalRecurrente{
 
         
         private const string rutaPesos = @"../../../zDataSet/datasetEntrenamiento/pesosRed.txt";
@@ -25,6 +25,7 @@ namespace GRU{
         private float[] biasR;
         private float[] biasH;
         private float[] h;
+        //private int longitud_Xt = 300;
 
         //PREGUNTAS
         /*
@@ -36,7 +37,7 @@ namespace GRU{
 
         */
 
-        public GRU(Boolean entrenada){
+        public RedNeuronalRecurrente(Boolean entrenada){
             if(entrenada){
                 cargarGRU();
             }else{
@@ -65,26 +66,13 @@ namespace GRU{
         }
 
         public float [] feedForward(float[] Xt){
+            Control control = new Control();
             float []Zt = control.updateGate(this.h, this.Wz, this.Uz, Xt, this.biasZ);
             float []Rt = control.updateGate(this.h, this.Wr, this.Ur, Xt, this.biasR);
             float [] Htilde = control.memoriaIntermedia(this.Wh, this.Uh, Xt, this.h, Rt, this.biasH);
             float [] Hfinal = control.memoriaFinal(Zt, this.h, Htilde);
             return Hfinal;
         }
-
-        public List<float> SoftMax(List<float> entrada)
-        {
-            float suma = 0;
-            foreach (float n in entrada)
-            {
-                suma += (float)Math.Exp(n);
-            }
-            List<float> prob = new List<float>();
-            foreach (float n2 in entrada)
-            {
-                prob.Add((float)Math.Exp(n2) / suma);
-            }
-            return prob;
-        }
+        
     }
 }

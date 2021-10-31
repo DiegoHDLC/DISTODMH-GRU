@@ -44,25 +44,7 @@ namespace GRU
             return peso;
         }
 
-        internal float[] funcionSigmoide(float[] suma)
-        {
-            float[] v = new float[longitud_Xt];
-            for(int i = 0; i < suma.Length; i++)
-            {
-                v[i] =(float) (1 / (1 + Math.Exp(-suma[i])));
-            }
-            return v;
-        }
-
-        internal float[] productoHalamard(float[] h, float[] rt)
-        {
-            float[] v = new float[longitud_Xt];
-            for (int i = 0; i < v.Length; i++)
-            {
-                v[i] = h[i] * rt[i];
-            }
-            return v;
-        }
+       
 
         internal float[] sumaVectores(float[] wx, float[] uh)
         {
@@ -106,28 +88,7 @@ namespace GRU
             return vectorFinal;
         }
 
-        public float[] tangenteHiperbolica(float[] x)
-        {
-            float[] y = new float[longitud_Xt];
-            for(int i = 0; i< x.Length; i++)
-            {
-                if (x[i] < -20.0)
-                {
-                    y[i] = -1;
-                }
-                else
-                {
-                    if(x[i] > 20){
-                        y[i] = 1;
-                    }else{
-                        y[i] = (float)Math.Tanh(x[i]);
-                    }
-                }
-            }
-            return y;
-            
-            
-        }
+       
 
 
     }

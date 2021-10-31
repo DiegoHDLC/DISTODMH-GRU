@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control.cs" />
-    <Compile Include="Logica.cs" />
-    <Compile Include="GRU\prediccion\GRU.cs" />
-    <Compile Include="GRU\prediccion\RN.cs" />
-    <Compile Include="GRU\prediccion\RNN.cs" />
+    <Compile Include="Control\Control.cs" />
+    <Compile Include="Prediccion\FA.cs" />
+    <Compile Include="Prediccion\Logica.cs" />
+    <Compile Include="Prediccion\RedNeuronalRecurrente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
