@@ -8,10 +8,13 @@ namespace GRU
 {
     public class Logica
     {
+
+        private int longitud_Xt = 300;
+
         public float[] generarVector(Random random, string tipo)
         {
             //Random rand = new Random();
-            float[] vector = new float[300];
+            float[] vector = new float[longitud_Xt];
             for (int i = 0; i < vector.Length; i++)
             {
                 // vector[i] = rand.Next(-2, 2);
@@ -28,10 +31,10 @@ namespace GRU
         public float[,] generarPeso(Random random)
         {
             //Random random = new Random();
-            float[,] peso = new float[300,300];
-            for(int i = 0; i < 300; i++)
+            float[,] peso = new float[longitud_Xt,longitud_Xt];
+            for(int i = 0; i < longitud_Xt; i++)
             {
-                for(int j = 0; j < 300; j++)
+                for(int j = 0; j < longitud_Xt; j++)
                 {
                     //peso[i, j] = random.Next(-2, 2);
                     peso[i, j] = (float)(random.Next(-1,1)*0.1);
@@ -43,7 +46,7 @@ namespace GRU
 
         internal float[] funcionSigmoide(float[] suma)
         {
-            float[] v = new float[300];
+            float[] v = new float[longitud_Xt];
             for(int i = 0; i < suma.Length; i++)
             {
                 v[i] =(float) (1 / (1 + Math.Exp(-suma[i])));
@@ -53,7 +56,7 @@ namespace GRU
 
         internal float[] productoHalamard(float[] h, float[] rt)
         {
-            float[] v = new float[300];
+            float[] v = new float[longitud_Xt];
             for (int i = 0; i < v.Length; i++)
             {
                 v[i] = h[i] * rt[i];
@@ -63,7 +66,7 @@ namespace GRU
 
         internal float[] sumaVectores(float[] wx, float[] uh)
         {
-            float[] vectorFinal = new float[300];
+            float[] vectorFinal = new float[longitud_Xt];
             for (int i = 0; i < wx.Length; i++)
             {
                 vectorFinal[i] = wx[i] + uh[i];
@@ -81,7 +84,7 @@ namespace GRU
 
         internal float[] resta(float[] zt)
         {
-            float[] resta = new float[300];
+            float[] resta = new float[longitud_Xt];
             for(int i = 0; i < zt.Length; i++)
             {
                 resta[i] = 1 - zt[i]; 
@@ -91,11 +94,11 @@ namespace GRU
 
         internal float[] multiplcarMatrizVector(float[,] w, float[] x)
         {
-            float[] vectorFinal = new float[300];
-            for (int fila = 0; fila < 300; fila++)
+            float[] vectorFinal = new float[longitud_Xt];
+            for (int fila = 0; fila < longitud_Xt; fila++)
             {
                 //vectorFinal[fila] = 0;
-                for (int col = 0; col < 300; col++)
+                for (int col = 0; col < longitud_Xt; col++)
                 {
                     vectorFinal[fila] += w[fila,col] * x[col];
                 }
@@ -105,7 +108,7 @@ namespace GRU
 
         public float[] tangenteHiperbolica(float[] x)
         {
-            float[] y = new float[300];
+            float[] y = new float[longitud_Xt];
             for(int i = 0; i< x.Length; i++)
             {
                 if (x[i] < -20.0)
