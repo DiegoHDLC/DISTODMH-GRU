@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace GRU{
     
     public class GRU{
-        
+
         
         private const string rutaPesos = @"../../../zDataSet/datasetEntrenamiento/pesosRed.txt";
         Random random = new Random();
@@ -25,6 +25,16 @@ namespace GRU{
         private float[] biasR;
         private float[] biasH;
         private float[] h;
+
+        //PREGUNTAS
+        /*
+        - Es necesario que se inicialice cada una de estas?
+        - En caso de que si se inicializa en el constru
+
+        - Es necesario tener Control en cada metodo?
+        - En caso de que no habria que hacer uno global
+
+        */
 
         public GRU(Boolean entrenada){
             if(entrenada){
@@ -51,18 +61,15 @@ namespace GRU{
         private void cargarGRU(){
             Control control = new Control();
             this.h = control.generarVector(random, "inicial");
+            //metodo cargar ~ desde control
         }
 
         public float [] feedForward(float[] Xt){
-            /* float []Zt = control.updateGate(this.h, this.Wz, this.Uz, Xt, this.biasZ);
-             float [] Rt;
-             float [] Htilde;
-             float [] Hfinal;
-
-
-
-             return Hfinal;*/
-            return null;
+            float []Zt = control.updateGate(this.h, this.Wz, this.Uz, Xt, this.biasZ);
+            float []Rt = control.updateGate(this.h, this.Wr, this.Ur, Xt, this.biasR);
+            float [] Htilde = control.memoriaIntermedia(this.Wh, this.Uh, Xt, this.h, Rt, this.biasH);
+            float [] Hfinal = control.memoriaFinal(Zt, this.h, Htilde);
+            return Hfinal;
         }
 
         public List<float> SoftMax(List<float> entrada)
