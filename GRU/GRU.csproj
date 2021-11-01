@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\Control.cs" />
-    <Compile Include="Prediccion\FA.cs" />
+    <Compile Include="Prediccion\FuncionesActivacion.cs" />
     <Compile Include="Prediccion\Logica.cs" />
     <Compile Include="Prediccion\RedNeuronalRecurrente.cs" />
     <Compile Include="Program.cs" />

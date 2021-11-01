@@ -14,6 +14,7 @@ namespace GRU{
         
         private const string rutaPesos = @"../../../zDataSet/datasetEntrenamiento/pesosRed.txt";
         Random random = new Random();
+        Control control = new Control();
         //Variables a utilizar
         private float [,] Wz;
         private float [,] Uz;
@@ -46,7 +47,7 @@ namespace GRU{
         }
 
         private void inicializarGRU(){
-            Control control = new Control();
+            
             this.h = control.generarVector(random,"inicial");
             this.Uz = control.generarPeso(random);
             this.Wz = control.generarPeso(random);
@@ -60,17 +61,18 @@ namespace GRU{
         }
 
         private void cargarGRU(){
-            Control control = new Control();
+            
             this.h = control.generarVector(random, "inicial");
             //metodo cargar ~ desde control
         }
 
         public float [] feedForward(float[] Xt){
-            Control control = new Control();
+           
             float []Zt = control.updateGate(this.h, this.Wz, this.Uz, Xt, this.biasZ);
             float []Rt = control.updateGate(this.h, this.Wr, this.Ur, Xt, this.biasR);
             float [] Htilde = control.memoriaIntermedia(this.Wh, this.Uh, Xt, this.h, Rt, this.biasH);
             float [] Hfinal = control.memoriaFinal(Zt, this.h, Htilde);
+            this.h = Hfinal;
             return Hfinal;
         }
         

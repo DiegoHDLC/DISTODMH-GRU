@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace GRU.GRU.prediccion
 {
-    internal class FA
+    internal class FuncionesActivacion
     {
         private int longitud_Xt = 300;
         internal float[] funcionSigmoide(float[] suma)
         {
-            float[] v = new float[longitud_Xt];
+            float[] v = new float[suma.Length];
             for (int i = 0; i < suma.Length; i++)
             {
                 v[i] = (float)(1 / (1 + Math.Exp(-suma[i])));

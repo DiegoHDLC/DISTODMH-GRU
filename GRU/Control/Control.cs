@@ -6,7 +6,7 @@ namespace GRU
     public class Control
     {
         Logica logica = new Logica();
-        FA fa = new FA();
+        FuncionesActivacion funcionesActivacion = new FuncionesActivacion();
         
         public float[] generarVector(Random random, string tipo)
         {
@@ -28,13 +28,13 @@ namespace GRU
             float[] sumaVectores = logica.sumaVectores(Wx, Uh);
             float[] sumaBias = logica.sumaVectores(sumaVectores, bias);
             //logica.imprimirVector(sumaBias);
-            float[] sigmoide = fa.funcionSigmoide(sumaBias);
+            float[] sigmoide = funcionesActivacion.funcionSigmoide(sumaBias);
             return sigmoide;
         }
 
         internal float[] productoHalamard(float[] h, float[] rt)
         {
-            float[] ph = fa.productoHalamard(h, rt);
+            float[] ph = funcionesActivacion.productoHalamard(h, rt);
             return ph;
         }
 
@@ -42,10 +42,10 @@ namespace GRU
         {
             float[] Uh = logica.multiplcarMatrizVector(uh, h);
             float[] Wx = logica.multiplcarMatrizVector(wh, x);
-            float[] ph = fa.productoHalamard(h,Uh);
+            float[] ph = funcionesActivacion.productoHalamard(h,Uh);
             float[] suma = logica.sumaVectores(Wx, ph);
             float[] suma2 = logica.sumaVectores(suma, biasH);
-            float[] tanh = fa.tangenteHiperbolica(suma2);
+            float[] tanh = funcionesActivacion.tangenteHiperbolica(suma2);
             return tanh;
 
         }
@@ -57,9 +57,9 @@ namespace GRU
 
         internal float[] memoriaFinal(float[] zt, float[] h, float[] hTilde)
         {
-            float[] ph1 = fa.productoHalamard(zt, h);
+            float[] ph1 = funcionesActivacion.productoHalamard(zt, h);
             float[] resta = logica.resta(zt);////resta 1 - zt
-            float[] ph2 = fa.productoHalamard(resta,hTilde);
+            float[] ph2 = funcionesActivacion.productoHalamard(resta,hTilde);
             float[] suma = logica.sumaVectores(ph1, ph2);
             return suma;
 
