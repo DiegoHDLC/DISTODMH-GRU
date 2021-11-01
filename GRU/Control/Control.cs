@@ -10,15 +10,13 @@ namespace GRU
         
         public float[] generarVector(Random random, string tipo)
         {
-            float[] vector = new float[300];
             switch (tipo)
             {
-                case "inicial": vector = logica.generarVector(random, "inicial"); break;
-                case "noInicial": vector = logica.generarVector(random, "noInicial");break;
-                case "bias": vector = logica.generarVector(random, "bias");break;
+                case "inicial": return logica.generarVector(random, "inicial");
+                case "noInicial": return logica.generarVector(random, "noInicial");
+                case "bias": return logica.generarVector(random, "bias");
             }
-            
-            return vector;
+            return null;
         }
 
         internal float[] updateGate(float[] h, float[,] w, float[,] u, float[] x, float[] bias)
