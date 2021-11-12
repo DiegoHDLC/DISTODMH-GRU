@@ -44,7 +44,72 @@ namespace GRU
             return peso;
         }
 
-       
+        internal float productoPuntoVector(float[] vector)
+        {
+            float[] v1 = vector;
+            float[] v2 = vector;
+            float suma = 0;
+            for (int i = 0; i < v1.Length; i++)
+            { 
+                suma = suma + (v1[i] * v2[i]);
+            }
+            return suma;
+        }
+
+        internal float[,] matrizTraspuesta(float[,] matriz)
+        {
+            float[,] mt = new float[matriz.GetLength(0), matriz.GetLength(1)];
+            for (int i = 0; i < matriz.GetLength(0); i++)
+            {
+                for (int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    mt[j, i] = matriz[i, j];
+                }
+            }
+            return mt;
+        }
+
+        public float[,] multiplicarVectores(float[] vec1, float[] vec2)
+        {
+            float[,] matriz = inicializarMatriz();
+
+            for (int i = 0; i < vec1.Length; i++)
+            {
+                for (int j = 0; j < vec2.Length; j++)
+                {
+                    matriz[i,j] = vec1[i] * vec2[j];
+                }
+            }
+            return matriz;
+        }
+
+        public float[,] inicializarMatriz()
+        {
+            float[,] unaMatriz = new float[300,300];
+            for (int x = 0; x < unaMatriz.GetLength(0); x++)
+            {
+                for(int y = 0; y < unaMatriz.GetLength(1); y++)
+                {
+                    unaMatriz[x, y] = 0;
+                }
+
+            }
+            return unaMatriz;
+        }
+
+        public float[] productoPuntoMatrizVector(float[,] matriz, float[] vector)
+        {
+            float[] vectorFinal = new float[vector.Length];
+            for (int fila = 0; fila < matriz.GetLength(0); fila++)
+            {
+                vectorFinal[fila] = 0;
+                for (int col = 0; col < matriz.GetLength(1); col++)
+                {
+                    vectorFinal[fila] += matriz[fila,col] * vector[col];
+                }
+            }
+            return vectorFinal;
+        }
 
         internal float[] sumaVectores(float[] wx, float[] uh)
         {

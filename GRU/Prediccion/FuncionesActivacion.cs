@@ -53,6 +53,16 @@ namespace GRU.GRU.prediccion
             return y;
         }
 
+        internal float[] productoHadamard(float valor, float[] d3)
+        {
+            float[] nuevoVector = new float[longitud_Xt];
+            for (int i = 0; i < nuevoVector.Length; i++)
+            {
+                nuevoVector[i] = valor * d3[i];
+            }
+            return nuevoVector;
+        }
+
         public List<float> SoftMax(List<float> entrada)
         {
             float suma = 0;
