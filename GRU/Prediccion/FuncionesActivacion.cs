@@ -19,7 +19,7 @@ namespace GRU.GRU.prediccion
             return v;
         }
 
-        internal float[] productoHalamard(float[] h, float[] rt)
+        internal float[] productoHadamard(float[] h, float[] rt)
         {
             float[] v = new float[longitud_Xt];
             for (int i = 0; i < v.Length; i++)

@@ -30,9 +30,9 @@ namespace GRU
             return sigmoide;
         }
 
-        internal float[] productoHalamard(float[] h, float[] rt)
+        internal float[] productoHadamard(float[] h, float[] rt)
         {
-            float[] ph = funcionesActivacion.productoHalamard(h, rt);
+            float[] ph = funcionesActivacion.productoHadamard(h, rt);
             return ph;
         }
 
@@ -40,7 +40,7 @@ namespace GRU
         {
             float[] Uh = logica.multiplcarMatrizVector(uh, h);
             float[] Wx = logica.multiplcarMatrizVector(wh, x);
-            float[] ph = funcionesActivacion.productoHalamard(h,Uh);
+            float[] ph = funcionesActivacion.productoHadamard(h,Uh);
             float[] suma = logica.sumaVectores(Wx, ph);
             float[] suma2 = logica.sumaVectores(suma, biasH);
             float[] tanh = funcionesActivacion.tangenteHiperbolica(suma2);
@@ -55,9 +55,9 @@ namespace GRU
 
         internal float[] memoriaFinal(float[] zt, float[] h, float[] hTilde)
         {
-            float[] ph1 = funcionesActivacion.productoHalamard(zt, h);
+            float[] ph1 = funcionesActivacion.productoHadamard(zt, h);
             float[] resta = logica.resta(zt);////resta 1 - zt
-            float[] ph2 = funcionesActivacion.productoHalamard(resta,hTilde);
+            float[] ph2 = funcionesActivacion.productoHadamard(resta,hTilde);
             float[] suma = logica.sumaVectores(ph1, ph2);
             return suma;
 
